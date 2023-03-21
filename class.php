@@ -19,6 +19,17 @@ class Student
     }
     public function Add()
     {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $query = "INSERT INTO customers (name,email,username,password) VALUES ('$name','$email','$username','$password')";
+        if ($this->conn->query($query) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $query . "<br>" . $this->conn->error;
+        }
     }
     public function Edit()
     {

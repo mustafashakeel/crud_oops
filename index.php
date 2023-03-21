@@ -4,6 +4,10 @@ include('class.php');
 
 $student = new Student();
 
+if (isset($_POST['submit'])) {
+    $student->Add();
+}
+
 
 ?>
 
