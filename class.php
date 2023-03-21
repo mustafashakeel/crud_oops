@@ -25,5 +25,16 @@ class Student
     }
     public function displayData()
     {
+        $query = "SELECT * FROM customers";
+        $result = $this->conn->query($query);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            echo   "No records found";
+        }
     }
 }

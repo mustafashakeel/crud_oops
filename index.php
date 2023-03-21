@@ -1,3 +1,12 @@
+<?php
+
+include('class.php');
+
+$student = new Student();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +33,52 @@
 
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" class="form-control">
+
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" class="form-control">
+
+                    <label for="username">username</label>
+                    <input type="text" name="username" id="username" class="form-control">
+
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control">
+
+
+                    <input type="submit" name="submit" id="submit" class="btn btn-primary mt-3">
                 </form>
+
+
+                <div class="col-sm-6">
+                    <h3>View Records </h3>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id </th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">UserName</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $std = $student->displayData();
+
+                            foreach ($std as $stu) {
+                            ?>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td><?php echo $stu['name'] ?></td>
+                                    <td>@mdo</td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+
+                        </tbody>
+                    </table>
+
+                </div>
 
             </div>
         </div>
