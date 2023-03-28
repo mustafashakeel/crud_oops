@@ -4,9 +4,12 @@ include('class.php');
 
 $student = new Student();
 
-if (isset($_POST['submit'])) {
-    $student->Add();
+if (isset($_GET['update_id']) && !empty($_GET['update_id'])) {
+    $id = $_GET['update_id'];
+    $data = $student->displayRecordById($id);
+    echo $data;
 }
+
 
 
 ?>
@@ -48,43 +51,11 @@ if (isset($_POST['submit'])) {
                     <input type="password" name="password" id="password" class="form-control">
 
 
-                    <button type="submit" name="submit" id="submit" class="btn btn-primary mt-3">Submit </button>
+                    <button type="submit" name="submit" id="submit" class="btn btn-primary mt-3">Update </button>
                 </form>
 
 
-                <div class="col-sm-6">
-                    <h3>View Records </h3>
-                    <table class="table table-dark">
-                        <thead>
-                            <tr>
-                                <th scope="col">Id </th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">UserName</th>
-                                <th scope="col">UserName</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $std = $student->displayData();
 
-                            foreach ($std as $stu) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $stu['id'] ?></td>
-                                    <td><?php echo $stu['name'] ?></td>
-                                    <td><?php echo $stu['email'] ?></td>
-                                    <td><?php echo $stu['username'] ?></td>
-                                    <td><a href="edit.php?update_id=<?php echo $stu['id'] ?>">Edit</a></td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-
-                        </tbody>
-                    </table>
-
-                </div>
 
             </div>
         </div>

@@ -9,7 +9,7 @@ class Student
 
     public function __Construct()
     {
-        echo "This is a constructor";
+        // echo "This is a constructor";
         $this->conn = new mysqli($this->host, $this->username, $this->password, $this->dbname);
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
@@ -43,6 +43,18 @@ class Student
 
                 $data[] = $row;
             }
+            return $data;
+        } else {
+            echo   "No records found";
+        }
+    }
+    public function displayRecordById($id)
+    {
+        $query = "SELECT * FROM customers WHERE id = $id";
+        $result = $this->conn->query($query);
+        if ($result->num_rows > 0) {
+
+            $data = $result->fetch_assoc();
             return $data;
         } else {
             echo   "No records found";
