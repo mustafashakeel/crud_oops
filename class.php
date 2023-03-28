@@ -82,4 +82,14 @@ class Student
             echo   "No records found";
         }
     }
+    public function delete($id)
+    {
+        $query = "DELETE FROM customers WHERE id = $id";
+        $sql = $this->conn->query($query);
+        if ($sql == true) {
+            header("Location: index.php?msg1=delete");
+        } else {
+            echo "Error while deleting record : " . $this->conn->error;
+        }
+    }
 }

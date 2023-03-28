@@ -7,6 +7,11 @@ $student = new Student();
 if (isset($_POST['submit'])) {
     $student->Add();
 }
+if (isset($_GET['del_id']) && !empty($_GET['del_id'])) {
+    $id = $_GET['del_id'];
+    $data = $student->delete($id);
+    echo $data;
+}
 
 
 ?>
@@ -61,7 +66,7 @@ if (isset($_POST['submit'])) {
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">UserName</th>
-                                <th scope="col">UserName</th>
+                                <th scope="col">Actions </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,7 +80,7 @@ if (isset($_POST['submit'])) {
                                     <td><?php echo $stu['name'] ?></td>
                                     <td><?php echo $stu['email'] ?></td>
                                     <td><?php echo $stu['username'] ?></td>
-                                    <td><a href="edit.php?update_id=<?php echo $stu['id'] ?>">Edit</a></td>
+                                    <td><a href="edit.php?update_id=<?php echo $stu['id'] ?>">Edit</a> | <a href="index.php?del_id=<?php echo $stu['id'] ?>">Delete</a> </td>
                                 </tr>
                             <?php
                             }
