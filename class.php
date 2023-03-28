@@ -31,8 +31,30 @@ class Student
             echo "Error: " . $query . "<br>" . $this->conn->error;
         }
     }
-    public function Edit()
+    public function update($postData)
     {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $id = $_POST['id'];
+
+
+
+        if (!empty($id)) {
+
+            $query = "UPDATE customers SET name='$name',email='$email',username='$username',password='$password' WHERE id = $id";
+
+            $sql = $this->conn->query($query);
+            if ($sql == true) {
+                header("Location: index.php?msg2=update");
+            } else {
+                echo "Error while updating record : " . $this->conn->error;
+            }
+        }
+
+        return $email;
     }
     public function displayData()
     {

@@ -7,7 +7,12 @@ $student = new Student();
 if (isset($_GET['update_id']) && !empty($_GET['update_id'])) {
     $id = $_GET['update_id'];
     $data = $student->displayRecordById($id);
-    echo $data;
+}
+
+if (isset($_POST['update'])) {
+    $update =  $student->update($_POST);
+
+    echo $update;
 }
 
 
@@ -36,22 +41,22 @@ if (isset($_GET['update_id']) && !empty($_GET['update_id'])) {
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <form action="index.php" method="POST">
+                <form action="edit.php" method="POST">
 
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control">
+                    <input type="text" name="name" id="name" value="<?php echo $data['name']; ?>" class="form-control">
 
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email" class="form-control">
+                    <input type="text" name="email" value="<?php echo $data['email']; ?>" id="email" class="form-control">
 
                     <label for="username">username</label>
-                    <input type="text" name="username" id="username" class="form-control">
+                    <input type="text" name="username" id="username" value="<?php echo $data['username']; ?>" class="form-control">
 
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control">
+                    <input type="text" name="password" id="password" value="<?php echo $data['password']; ?>" class="form-control">
 
-
-                    <button type="submit" name="submit" id="submit" class="btn btn-primary mt-3">Update </button>
+                    <input type="hidden" name="id" id="id" value="<?php echo $data['id']; ?>">
+                    <button type="submit" name="update" value="update" id="update" class="btn btn-primary mt-3">Update </button>
                 </form>
 
 
